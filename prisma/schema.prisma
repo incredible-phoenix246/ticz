@@ -7,11 +7,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model User {
   id         Int      @id @default(autoincrement())
   email      String   @unique
   full_name  String
   password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  tickets    Ticket[]
 }
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  time        String
+  location    String
+  image       String?
+  price       Float
+  capacity    Int
+  tickets     Ticket[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+enum TicketType {
+  FREE
+  VIP
+  VVIP
+}
+
+enum TicketStatus {
+  ACTIVE
+  USED
+  CANCELLED
+  EXPIRED
+}
+
+model Ticket {
+  id             Int          @id @default(autoincrement())
+  ticket_number  String       @unique
+  user           User         @relation(fields: [user_id], references: [id])
+  user_id        Int
+  event          Event        @relation(fields: [event_id], references: [id])
+  event_id       Int
+  ticket_type    TicketType
+  quantity       Int
+  profile_image  String?
+  special_request String?
+  status         TicketStatus @default(ACTIVE)
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+
+  @@index([user_id])
+  @@index([event_id])
+  @@index([ticket_number])
+}
+
