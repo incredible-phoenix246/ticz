@@ -45,7 +45,7 @@ export function Header() {
             {[
               { href: '/', label: 'Events' },
               { href: '/', label: 'My Tickets' },
-              { href: '/', label: 'About Project' },
+              { href: '/about', label: 'About Project' },
             ].map((item) => (
               <Link
                 key={item.label}
