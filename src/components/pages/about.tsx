@@ -10,7 +10,6 @@ import {
   FileCode,
   Server,
   ReceiptIcon as Payment,
-  Github,
 } from 'lucide-react'
 import Link from 'next/link'
 
