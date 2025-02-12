@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { cn } from '@/utils'
 import BlurImage from '../miscellaneous/blur-image'
+import { signIn } from 'next-auth/react'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -61,9 +62,8 @@ export function Header() {
             ))}
           </nav>
 
-          {/* My Tickets Button */}
-          <Link
-            href="/my-tickets"
+          <button
+            onClick={() => signIn('google', { redirectTo: '/' })}
             className="flex transform items-center space-x-2 rounded-[24px] bg-white px-[24px] py-[16px] text-sm text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
           >
             <span>MY TICKETS</span>
@@ -74,7 +74,7 @@ export function Header() {
             >
               →
             </motion.span>
-          </Link>
+          </button>
         </div>
       </div>
     </motion.header>
