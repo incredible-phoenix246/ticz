@@ -82,14 +82,7 @@ export function Header() {
               onClick={() => signIn('google', { redirectTo: '/' })}
               className="flex transform items-center space-x-2 rounded-[24px] bg-white px-[24px] py-[16px] text-sm text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
             >
-              <span>MY TICKETS</span>
-              <motion.span
-                initial={{ x: 0 }}
-                whileHover={{ x: 5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                →
-              </motion.span>
+              <span>SIGN IN</span>
             </button>
           )}
         </div>
