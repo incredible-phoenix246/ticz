@@ -21,7 +21,7 @@ export default function LandingPage() {
         <div className="container mx-auto text-center">
           <motion.h1
             className={cn(
-              'font-roadrage mb-6 text-4xl font-bold md:text-6xl',
+              'font-roadrage mb-6 text-4xl md:text-6xl',
               roadrage.className
             )}
             initial={{ opacity: 0, y: -20 }}
@@ -56,7 +56,7 @@ export default function LandingPage() {
       {/* Features Section */}
       <section className="px-4 py-20">
         <div className="container mx-auto">
-          <h2 className="mb-12 text-center text-3xl font-bold">
+          <h2 className={cn('mb-12 text-center text-3xl', roadrage.className)}>
             Why Choose Our Platform?
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -115,7 +115,9 @@ export default function LandingPage() {
       {/* How It Works Section */}
       <section className="px-4 py-20">
         <div className="container mx-auto">
-          <h2 className="mb-12 text-center text-3xl font-bold">How It Works</h2>
+          <h2 className={cn('mb-12 text-center text-3xl', roadrage.className)}>
+            How It Works
+          </h2>
           <div className="flex flex-col items-center justify-center md:flex-row md:space-x-8">
             {[
               {
@@ -155,7 +157,7 @@ export default function LandingPage() {
 
       <section className="px-4 py-20">
         <div className="container mx-auto">
-          <h2 className="mb-12 text-center text-3xl font-bold">
+          <h2 className={cn('mb-12 text-center text-3xl', roadrage.className)}>
             What Our Users Say
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -199,9 +201,11 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="px-4 py-20">
-        <div className="container mx-auto text-center">
+        <div
+          className={cn('container mx-auto text-center', roadrage.className)}
+        >
           <motion.h2
-            className="mb-6 text-3xl font-bold md:text-4xl"
+            className="mb-6 text-3xl md:text-4xl"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
