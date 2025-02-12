@@ -5,10 +5,11 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { cn } from '@/utils'
 import BlurImage from '../miscellaneous/blur-image'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const { status } = useSession()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,19 +63,35 @@ export function Header() {
             ))}
           </nav>
 
-          <button
-            onClick={() => signIn('google', { redirectTo: '/' })}
-            className="flex transform items-center space-x-2 rounded-[24px] bg-white px-[24px] py-[16px] text-sm text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
-          >
-            <span>MY TICKETS</span>
-            <motion.span
-              initial={{ x: 0 }}
-              whileHover={{ x: 5 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+          {status === 'authenticated' ? (
+            <Link
+              href="/my-tickets"
+              className="flex transform items-center space-x-2 rounded-[24px] bg-white px-[24px] py-[16px] text-sm text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
             >
-              →
-            </motion.span>
-          </button>
+              <span>MY TICKETS</span>
+              <motion.span
+                initial={{ x: 0 }}
+                whileHover={{ x: 5 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                →
+              </motion.span>
+            </Link>
+          ) : (
+            <button
+              onClick={() => signIn('google', { redirectTo: '/' })}
+              className="flex transform items-center space-x-2 rounded-[24px] bg-white px-[24px] py-[16px] text-sm text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
+            >
+              <span>MY TICKETS</span>
+              <motion.span
+                initial={{ x: 0 }}
+                whileHover={{ x: 5 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                →
+              </motion.span>
+            </button>
+          )}
         </div>
       </div>
     </motion.header>
